@@ -14,23 +14,71 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model User {
-  id        Int      @id @default(autoincrement())
-  name      String
-  email     String   @unique
-  tasks     Task[]
-}
-
-model Task {
-  id        Int      @id @default(autoincrement())
-  title     String
-  completed Boolean  @default(false)
-  user      User?    @relation(fields: [userId], references: [id])
-  userId    Int?
-}
-
 model Product {
-  id        Int      @id @default(autoincrement())
+  id          Int     @id @default(autoincrement())
+  name        String
+  color       String
+  description String?
+
+  createdAt        DateTime          @default(now())
+  orcament         Orcament[]
+  materialProducts materialProduct[]
+  orcamentItems    OrcamentItem[]
+}
+
+model MaterialCategory {
+  id   Int    @id @default(autoincrement())
+  name String
+
+  material Material[]
+}
+
+model Material {
+  id        Int    @id @default(autoincrement())
+  code      String @default("")
   name      String
   color     String
+  unit      String
+  unitPrice Float @default(0)
+
+  categoryId Int
+  category   MaterialCategory @relation(fields: [categoryId], references: [id])
+
+  items            OrcamentItem[]
+  materialProducts materialProduct[]
+}
+
+model materialProduct {
+  id         Int      @id @default(autoincrement())
+  product    Product  @relation(fields: [productId], references: [id])
+  productId  Int
+  material   Material @relation(fields: [materialId], references: [id])
+  materialId Int
+  formula    String
+}
+
+model Orcament {
+  id Int @id @default(autoincrement())
+
+  totalPrice   Float
+  validadeDays Int      @default(30)
+  createdAt    DateTime @default(now())
+
+  items     OrcamentItem[]
+  product   Product?       @relation(fields: [productId], references: [id])
+  productId Int?
+}
+
+model OrcamentItem {
+  id         Int       @id @default(autoincrement())
+  orcamentId Int
+  orcament   Orcament  @relation(fields: [orcamentId], references: [id])
+  productId  Int
+  product    Product   @relation(fields: [productId], references: [id])
+  width      Float
+  height     Float
+  quantity   Int
+  totalPrice Float
+  material   Material? @relation(fields: [materialId], references: [id])
+  materialId Int?
 }

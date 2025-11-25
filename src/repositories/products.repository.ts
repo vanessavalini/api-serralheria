@@ -5,7 +5,7 @@ export async function create(data: { name: string; color: string }) {
 }
 
 export async function findAll() {
-  return Product.findMany()
+  return Product.findMany({include: {materialProducts: true }})
 }
 
 export async function findById(id: number) {

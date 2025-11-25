@@ -12,16 +12,16 @@ export async function getProductById(id: number) {
   return await productRepository.findById(id)
 }
 export async function updateProduct(id: number, data: { name?: string; color?: string }) {
-  const user = await productRepository.findById(id)
-  if (!user) {
+  const product = await productRepository.findById(id)
+  if (!product) {
     return null
   }
   return await productRepository.update(id, data)
 }
 
 export async function deleteProduct(id: number) {
-  const user = await productRepository.findById(id)
-  if (!user) {
+  const product = await productRepository.findById(id)
+  if (!product) {
     return null
   }
   return await productRepository.remove(id)

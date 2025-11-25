@@ -1,12 +1,12 @@
 import "dotenv/config"
 import express from "express"
-import userRoutes from "./routes/user.routes.js"
 import productsRoutes from "./routes/products.routes.js"
+import materialRoutes from "./routes/material.routes.js"
 
 const app = express()
 app.use(express.json())
-app.use(userRoutes)
 app.use(productsRoutes)
+app.use(materialRoutes)
 
 const PORT = process.env.PORT || 3000
 app.listen(PORT, () => {

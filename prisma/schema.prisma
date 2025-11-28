@@ -67,6 +67,8 @@ model Orcament {
   items     OrcamentItem[]
   product   Product?       @relation(fields: [productId], references: [id])
   productId Int?
+  clientId Int
+  client  Client @relation(fields: [clienteId], references:[id])
 }
 
 model OrcamentItem {
@@ -84,16 +86,13 @@ model OrcamentItem {
 }
 
 model Client{
-  id INT @id @default (autoincrement()),
-  createdAt Datetime @default (now())
+  id Int @id @default(autoincrement())
+  createdAt DateTime @default(now())
   CPF String @unique
-  name String,
-  phone String?,
-  endereco String?,
+  name String
+  phone String?
+  endereco String?
   orcamentId Int
-  orcament Orcament @relation(fields: [orcamentId], references: [id])
+  orcaments Orcament[]
 }
 
-//da pra adicionar no model orcament, duas linhas para relacionar com o model client
-// client Int @relation(fields: [clienteId], references:[id])
-//criar uma linha clienteId Int é chave primaria do tipo inteiro.

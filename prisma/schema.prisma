@@ -68,7 +68,7 @@ model Orcament {
   product   Product?       @relation(fields: [productId], references: [id])
   productId Int?
   clientId Int
-  client  Client @relation(fields: [clienteId], references:[id])
+  client  Client @relation(fields: [clientId], references:[id])
 }
 
 model OrcamentItem {

@@ -82,3 +82,14 @@ model OrcamentItem {
   material   Material? @relation(fields: [materialId], references: [id])
   materialId Int?
 }
+
+model Client{
+  id INT @id @default (autoincrement()),
+  createdAt Datetime @default (now())
+  CPF String @unique
+  name String,
+  phone String?,
+  endereco String?,
+  orcamentId Int
+  orcament Orcament @relation(fields: [orcamentId], references: [id])
+}

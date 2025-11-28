@@ -93,3 +93,7 @@ model Client{
   orcamentId Int
   orcament Orcament @relation(fields: [orcamentId], references: [id])
 }
+
+//da pra adicionar no model orcament, duas linhas para relacionar com o model client
+// client Int @relation(fields: [clienteId], references:[id])
+//criar uma linha clienteId Int é chave primaria do tipo inteiro.

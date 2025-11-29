@@ -92,7 +92,6 @@ model Client{
   name String
   phone String?
   endereco String?
-  orcamentId Int
   orcaments Orcament[]
 }
 

@@ -77,3 +77,9 @@ async function createMaterialProducts() {
       process.exit(1)
     })
 
+async function createUser() {
+  const user = await prisma.user.create({
+    data: { name: "Gurus Serralheria", CNPJ: "08095410/0001-75", address: "Rua Uichi Miyake, 135 - Colinas de Indaituba II - Indaiatuba/SP - CEP 13331-250", email: "gurusserralheria@gmail.com", phone: "(19)99504-6847"}
+  })
+  console.log({ user })
+}

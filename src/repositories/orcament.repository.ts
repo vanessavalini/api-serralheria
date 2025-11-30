@@ -21,8 +21,10 @@ export async function create(data: CreateOrcamentInput) {
     data: {
       totalPrice: data.totalPrice,
       validadeDays: data.validadeDays,
-      products: {createMany: {data: data.orcamentProduct || []}}
-    }
+      products: { createMany: { data: data.orcamentProduct || [] } }
+    },
+    // include the related product for each OrcamentProduct so callers can access product.name
+    include: { products: { include: { product: true } } }
   })
 }
 

@@ -50,7 +50,8 @@ export async function createOrcament(data: OrcamentData[]) {
       validadeDays: 30,
       orcamentProduct: items
   })
-  // const order = await PrismaClient.orcament.create({data: {}})
+  // return the created orcament (includes products because repository.create now includes them)
+  return productOrcament
 }
 
 export async function getAllOrcament() {

@@ -79,6 +79,7 @@ model OrcamentProduct {
 
 model User{
   Id            Int       @id @default(autoincrement())
+  CNPJ          String @unique
   Nome          String
   Endereco      String
   Email         String?

@@ -2,8 +2,8 @@ import type express from "express"
 import * as userService from "../services/user.service.js"
 
 export async function createUser(req: express.Request, res: express.Response) {
-  const {Nome, Endereco, Email, Telefone} = req.body
-  const user = await userService.createRepository({Nome, Endereco, Email, Telefone})
+  const {Nome, CNPJ, Endereco, Email, Telefone} = req.body
+  const user = await userService.createRepository({Nome, CNPJ, Endereco, Email, Telefone})
   res.status(201).json(user)
 }
 
@@ -23,8 +23,8 @@ export async function getUserById(req: express.Request, res: express.Response) {
 }
 export async function updateUser(req: express.Request, res: express.Response) {
   const { id } = req.params
-  const {Nome, Endereco, Email, Telefone} = req.body
-  const user = await userService.updateUser(Number(id), {Nome, Endereco, Email, Telefone})
+  const {Nome, CNPJ, Endereco, Email, Telefone} = req.body
+  const user = await userService.updateUser(Number(id), {Nome, CNPJ, Endereco, Email, Telefone})
   if (!user) {
     return res.status(404).json({ message: "User not found" })
   }

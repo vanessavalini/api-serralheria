@@ -1,6 +1,6 @@
 import * as userRepository from "../repositories/user.repository.js"
 
-export async function createRepository(data: {Nome: string; Endereco: string; Email: string; Telefone: string }) {
+export async function createRepository(data: {Nome: string; CNPJ: string; Endereco: string; Email: string; Telefone: string }) {
   return await userRepository.create(data)
 }
 
@@ -11,7 +11,7 @@ export async function getAllUsers() {
 export async function getUserById(id: number) {
   return await userRepository.findById(id)
 }
-export async function updateUser(id: number, data: {Nome?: string; Endereco?: string; Email?: string; Telefone?: string }) {
+export async function updateUser(id: number, data: {Nome?: string; CNPJ: string; Endereco?: string; Email?: string; Telefone?: string }) {
   const user = await userRepository.findById(id)
   if (!user) {
     return null

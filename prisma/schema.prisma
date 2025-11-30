@@ -87,7 +87,6 @@ model OrcamentItem {
 
 model Client{
   id Int @id @default(autoincrement())
-  createdAt DateTime @default(now())
   CPF String @unique
   name String
   phone String?
@@ -95,3 +94,4 @@ model Client{
   orcaments Orcament[]
 }
 
+//npx --dev name algum comando para ser rodado antes das migrations.

@@ -2,8 +2,8 @@ import type express from "express"
 import * as productService from "../services/products.service.js"
 
 export async function createProduct(req: express.Request, res: express.Response) {
-  const { name, color, } = req.body
-  const product = await productService.createProduct({ name, color })
+  const { name, color, description} = req.body
+  const product = await productService.createProduct({ name, color, description })
   res.status(201).json(product)
 }
 
@@ -23,8 +23,8 @@ export async function getProductById(req: express.Request, res: express.Response
 }
 export async function updateProduct(req: express.Request, res: express.Response) {
   const { id } = req.params
-  const { name, color } = req.body
-  const product = await productService.updateProduct(Number(id), { name, color })
+  const { name, color, description } = req.body
+  const product = await productService.updateProduct(Number(id), { name, color, description })
   if (!product) {
     return res.status(404).json({ message: "product not found" })
   }

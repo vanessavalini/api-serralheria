@@ -62,7 +62,6 @@ model Orcament {
   validadeDays Int      @default(30)
   createdAt    DateTime @default(now())
 
-  items     OrcamentItem[]
   product   Product?       @relation(fields: [productId], references: [id])
   productId Int?
   clientId Int
@@ -86,7 +85,7 @@ model Client{
   id Int @id @default(autoincrement())
   CPF String @unique
   name String
-  phone String?
+  phone String? @default("")
   endereco String?
   orcaments Orcament[]
 }

@@ -76,3 +76,11 @@ model OrcamentProduct {
   quantity   Int
   totalPrice Float
 }
+
+model User{
+  Id            Int       @id @default(autoincrement())
+  Nome          String
+  Endereco      String
+  Email         String?
+  Telefone      String    @default("")
+}

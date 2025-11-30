@@ -90,5 +90,3 @@ model Client{
   endereco String?
   orcaments Orcament[]
 }
-
-//npx --dev name algum comando para ser rodado antes das migrations.

@@ -3,7 +3,7 @@ import * as clientService from "../services/client.service.js"
 
 export async function createClient(req: express.Request, res: express.Response) {
   const { name, CPF } = req.body
-  const client = await clientService.createClient({ name, CPF }) //erro.
+  const client = await clientService.createClient({ name, CPF })
   res.status(201).json(client)
 }
 

@@ -78,7 +78,7 @@ model OrcamentProduct {
 }
 
 model User{
-  Id            Int       @id @default(autoincrement())
+  id            Int       @id @default(autoincrement())
   CNPJ          String    @unique
   name          String
   address       String

@@ -1,28 +1,28 @@
-import * as User from "../repositories/user.repository.js"
+import * as userRepository from "../repositories/user.repository.js"
 
-export async function createUser(data: {Nome: string; Endereco: string; Email: string; Telefone: string }) {
-  return await User.create(data)
+export async function createRepository(data: {Nome: string; Endereco: string; Email: string; Telefone: string }) {
+  return await userRepository.create(data)
 }
 
 export async function getAllUsers() {
-  return await User.findAll()
+  return await userRepository.findAll()
 }
 
 export async function getUserById(id: number) {
-  return await User.findById(id)
+  return await userRepository.findById(id)
 }
 export async function updateUser(id: number, data: {Nome?: string; Endereco?: string; Email?: string; Telefone?: string }) {
-  const user = await User.findById(id)
+  const user = await userRepository.findById(id)
   if (!user) {
     return null
   }
-  return await User.update(id, data)
+  return await userRepository.update(id, data)
 }
 
 export async function deleteUser(id: number) {
-  const user = await User.findById(id)
+  const user = await userRepository.findById(id)
   if (!user) {
     return null
   }
-  return await User.remove(id)
+  return await userRepository.remove(id)
 }

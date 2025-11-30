@@ -56,30 +56,35 @@ async function createMaterialProducts() {
       { productId: 2, materialId: 2, formula: "L/1000" },
       { productId: 2, materialId: 1, formula: "L/1000" },
       { productId: 2, materialId: 3, formula: "(2*A)/1000" },
-      { productId: 2, materialId: 4, formula: "(4*A + 4*(L/2))/1000"},
+      { productId: 2, materialId: 4, formula: "(4*A + 4*(L/2))/1000" },
       { productId: 2, materialId: 7, formula: "(2*(A+L))/1000" },
       { productId: 2, materialId: 15, formula: "((L/2 - 30)+(A - 40))/1000" },
       { productId: 2, materialId: 9, formula: "4" },
       { productId: 2, materialId: 10, formula: "1" },
       { productId: 2, materialId: 11, formula: "2" },
       { productId: 2, materialId: 14, formula: "12" },
-  ]
-  })}
-
-
-  createCategories().then(() => createProducts()).then(() => createMaterial()).then(() => createMaterialProducts())
-    .then(async () => {
-      await prisma.$disconnect()
-    })
-    .catch(async (e) => {
-      console.error(e)
-      await prisma.$disconnect()
-      process.exit(1)
-    })
+    ]
+  })
+}
 
 async function createUser() {
   const user = await prisma.user.create({
-    data: { name: "Gurus Serralheria", CNPJ: "08095410/0001-75", address: "Rua Uichi Miyake, 135 - Colinas de Indaituba II - Indaiatuba/SP - CEP 13331-250", email: "gurusserralheria@gmail.com", phone: "(19)99504-6847"}
+    data: { name: "Gurus Serralheria", CNPJ: "08095410/0001-75", address: "Rua Uichi Miyake, 135 - Colinas de Indaituba II - Indaiatuba/SP - CEP 13331-250", email: "gurusserralheria@gmail.com", phone: "(19)99504-6847" }
   })
   console.log({ user })
 }
+
+createCategories()
+  .then(() => createProducts())
+  .then(() => createMaterial())
+  .then(() => createMaterialProducts())
+  .then(() => createUser())
+  .then(async () => {
+    await prisma.$disconnect()
+  })
+  .catch(async (e) => {
+    console.error(e)
+    await prisma.$disconnect()
+    process.exit(1)
+  })
+

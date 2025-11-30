@@ -21,9 +21,8 @@ model Product {
   description String?
 
   createdAt        DateTime          @default(now())
-  orcament         Orcament[]
   materialProducts materialProduct[]
-  orcamentItems    OrcamentItem[]
+  orcamentProducts    OrcamentProduct[]
 }
 
 model MaterialCategory {
@@ -44,7 +43,6 @@ model Material {
   categoryId Int
   category   MaterialCategory @relation(fields: [categoryId], references: [id])
 
-  items            OrcamentItem[]
   materialProducts materialProduct[]
 }
 
@@ -64,14 +62,18 @@ model Orcament {
   validadeDays Int      @default(30)
   createdAt    DateTime @default(now())
 
+<<<<<<< HEAD
   items     OrcamentItem[]
   product   Product?       @relation(fields: [productId], references: [id])
   productId Int?
   clientId Int
   client  Client @relation(fields: [clientId], references:[id])
+=======
+  products     OrcamentProduct[]
+>>>>>>> 825e68817581e2ccdc7d0515932daf159b89926e
 }
 
-model OrcamentItem {
+model OrcamentProduct {
   id         Int       @id @default(autoincrement())
   orcamentId Int
   orcament   Orcament  @relation(fields: [orcamentId], references: [id])
@@ -81,8 +83,6 @@ model OrcamentItem {
   height     Float
   quantity   Int
   totalPrice Float
-  material   Material? @relation(fields: [materialId], references: [id])
-  materialId Int?
 }
 
 model Client{

@@ -39,9 +39,9 @@ export async function findById(id: number) {
   return orcament.findUnique({ where: { id }, include: {products: true, user: true, client: true} })
   }
 
-export async function update(id: number, data: CreateOrcamentItemInput) {
-  return orcament.update({ where: { id }, data })
-}
+// export async function update(id: number, data: CreateOrcamentItemInput) {
+//   return orcament.update({ where: { id }, data })
+// }
 
 export async function remove(id: number) {
   return orcament.delete({ where: { id } })

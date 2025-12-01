@@ -66,18 +66,21 @@ export async function createOrcament(req: express.Request, res: express.Response
   doc.moveDown(0.5)
 
   if (Orcament.products && Orcament.products.length) {
-    // fetch product names when possible
+    // fetch product names and colors when possible
     for (let idx = 0; idx < Orcament.products.length; idx++) {
       const p: any = Orcament.products[idx]
       let productName = `Produto #${p.productId}`
+      let productColor = "-"
       try {
         const prod = await productRepository.findById(p.productId)
         if (prod && (prod as any).name) productName = (prod as any).name
+        if (prod && (prod as any).color) productColor = (prod as any).color
       } catch (err) {
-        // ignore and keep fallback name
+        // ignore and keep fallback name/color
       }
 
       doc.fontSize(12).text(`${idx + 1}. ${productName}`)
+      doc.text(`   Cor: ${productColor}`)
       doc.text(`   Largura: ${p.width}  Altura: ${p.height}  Quantidade: ${p.quantity}`)
       doc.text(`   Valor do item: R$ ${Number(p.totalPrice).toLocaleString('pt-BR', {minimumFractionDigits: 2})}`)
       doc.moveDown(0.25)
@@ -106,16 +109,16 @@ export async function getOrcamentById(req: express.Request, res: express.Respons
     res.status(404).json({ message: "Orcament not found" })
   }
 }
-export async function updateOrcament(req: express.Request, res: express.Response) {
-  // const { id } = req.params
-  // const { productId } = req.body
-  // const Orcament = await orcamentService.updateOrcament(Number(id), { productId:1,totalPrice:1  })
-  // if (!Orcament) {
-  //   return res.status(404).json({ message: "rcamentItem not found" })
-  // }
+// export async function updateOrcament(req: express.Request, res: express.Response) {
+//    const { id } = req.params
+//    const { lista } = req.body
+//    const Orcament = await orcamentService.updateOrcament(Number(id), lista  )
+//    if (!Orcament) {
+//      return res.status(404).json({ message: "rcamentItem not found" })
+//    }
 
-  // return res.status(200).json(Orcament)
-}
+//    return res.status(200).json(Orcament)
+// }
 
 export async function deleteOrcament(req: express.Request, res: express.Response) {
   const { id } = req.params

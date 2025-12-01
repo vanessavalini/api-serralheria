@@ -54,7 +54,8 @@ export async function createOrcament(data: OrcamentData) {
       orcamentProduct: items,
       clientId: data.clientId
   })
-  // const order = await PrismaClient.orcament.create({data: {}})
+  // return the created orcament (includes products because repository.create now includes them)
+  return productOrcament
 }
 
 export async function getAllOrcament() {
@@ -64,7 +65,7 @@ export async function getAllOrcament() {
 export async function getOrcamentById(id: number) {
   return await orcamentRepository.findById(id)
 }
-export async function updateOrcament(id: number, data: OrcamentData) {
+export async function updateOrcament(id: number, data: OrcamentItem) {
   const Orcament = await orcamentRepository.findById(id)
   if (!Orcament) {
     return null

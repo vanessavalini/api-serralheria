@@ -26,6 +26,8 @@ export async function create(data: CreateOrcamentInput) {
       userId: 1,
       clientId: data.clientId
     }
+    ,
+    include: { products: true, user: true, client: true }
   })
 }
 
@@ -37,7 +39,7 @@ export async function findById(id: number) {
   return orcament.findUnique({ where: { id }, include: {products: true, user: true, client: true} })
   }
 
-export async function update(id: number, data: OrcamentData) {
+export async function update(id: number, data: CreateOrcamentItemInput) {
   return orcament.update({ where: { id }, data })
 }
 

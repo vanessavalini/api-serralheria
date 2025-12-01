@@ -61,6 +61,8 @@ model Orcament {
   totalPrice   Float
   validadeDays Int      @default(30)
   createdAt    DateTime @default(now())
+  userId      Int
+  user        User     @relation(fields: [userId], references: [id])
 
   products     OrcamentProduct[]
 }
@@ -84,4 +86,5 @@ model User{
   address       String
   email         String?
   phone         String    @default("")
+  orcaments     Orcament[]
 }

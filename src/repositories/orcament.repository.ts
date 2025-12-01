@@ -21,17 +21,18 @@ export async function create(data: CreateOrcamentInput) {
     data: {
       totalPrice: data.totalPrice,
       validadeDays: data.validadeDays,
-      products: {createMany: {data: data.orcamentProduct || []}}
+      products: {createMany: {data: data.orcamentProduct || []}},
+      userId: 1
     }
   })
 }
 
 export async function findAll() {
-  return orcament.findMany({include: {products: true}})
+  return orcament.findMany({include: {products: true, user: true}})
 }
 
 export async function findById(id: number) {
-  return orcament.findUnique({ where: { id } })
+  return orcament.findUnique({ where: { id }, include: {products: true, user: true} })
 }
 export async function update(id: number, data: OrcamentData) {
   return orcament.update({ where: { id }, data })

@@ -62,11 +62,10 @@ model Orcament {
   validadeDays Int      @default(30)
   createdAt    DateTime @default(now())
 
-  product   Product?       @relation(fields: [productId], references: [id])
-  productId Int?
+ 
   clientId Int
   client  Client @relation(fields: [clientId], references:[id])
-  OrcamentProducts OrcamentProduct[]
+  products OrcamentProduct[]
 }
 
 model OrcamentProduct {

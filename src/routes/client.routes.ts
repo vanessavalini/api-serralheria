@@ -7,3 +7,6 @@ router.get("/clients", clientController.getAllClients)
 router.get("/clients/:id", clientController.getClientById)
 
 export default router
+
+router.put("/clients/:id", clientController.updateClient)
+router.delete("/clients/:id", clientController.deleteClient)

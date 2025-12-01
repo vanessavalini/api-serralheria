@@ -10,4 +10,20 @@ export async function getAllClients() {
 
 export async function getClientById(id: number) {
   return await clientRepository.findById(id)
-} //rever se as funções estão certas
+}
+
+export async function updateClient(id: number, data: { name?: string; CPF: string; endereco: string; phone?: string }) {
+  const client = await clientRepository.findById(id)
+  if (!client) {
+    return null
+  }
+  return await clientRepository.update(id, data)
+}
+
+export async function deleteClient(id: number) {
+  const client = await clientRepository.findById(id)
+  if (!client) {
+    return null
+  }
+  return await clientRepository.remove(id)
+}

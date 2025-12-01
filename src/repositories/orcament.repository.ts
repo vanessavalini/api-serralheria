@@ -5,6 +5,7 @@ export interface CreateOrcamentInput {
   totalPrice: number
   validadeDays: number
   orcamentProduct: CreateOrcamentItemInput[]
+  clientId: number
 }
 
 export interface CreateOrcamentItemInput {
@@ -21,7 +22,8 @@ export async function create(data: CreateOrcamentInput) {
     data: {
       totalPrice: data.totalPrice,
       validadeDays: data.validadeDays,
-      products: {createMany: {data: data.orcamentProduct || []}}
+      products: {createMany: {data: data.orcamentProduct || []}},
+      clientId: data.clientId
     }
   })
 }

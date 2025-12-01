@@ -5,6 +5,7 @@ export interface CreateOrcamentInput {
   totalPrice: number
   validadeDays: number
   orcamentProduct: CreateOrcamentItemInput[]
+  clientId: number
 }
 
 export interface CreateOrcamentItemInput {
@@ -21,17 +22,18 @@ export async function create(data: CreateOrcamentInput) {
     data: {
       totalPrice: data.totalPrice,
       validadeDays: data.validadeDays,
-      products: {createMany: {data: data.orcamentProduct || []}}
+      products: {createMany: {data: data.orcamentProduct || []}},
+      clientId: data.clientId
     }
   })
 }
 
 export async function findAll() {
-  return orcament.findMany({include: {products: true}})
+  return orcament.findMany({include: {products: true, client: true}})
 }
 
 export async function findById(id: number) {
-  return orcament.findUnique({ where: { id } })
+  return orcament.findUnique({ where: { id }, include: {products: true, client: true} })
 }
 export async function update(id: number, data: OrcamentData) {
   return orcament.update({ where: { id }, data })

@@ -62,7 +62,10 @@ model Orcament {
   validadeDays Int      @default(30)
   createdAt    DateTime @default(now())
 
-  products     OrcamentProduct[]
+ 
+  clientId Int
+  client  Client @relation(fields: [clientId], references:[id])
+  products OrcamentProduct[]
 }
 
 model OrcamentProduct {
@@ -75,4 +78,13 @@ model OrcamentProduct {
   height     Float
   quantity   Int
   totalPrice Float
+}
+
+model Client{
+  id Int @id @default(autoincrement())
+  CPF String @unique
+  name String
+  phone String? @default("")
+  endereco String?
+  orcaments Orcament[]
 }

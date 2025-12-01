@@ -1,24 +1,27 @@
 import { PrismaClient } from "@prisma/client"
 import { Prisma } from "../../generated/prisma/client.js"
 import * as orcamentRepository from "../repositories/orcament.repository.js"
-import * as orcamentItemRepository from "../repositories/orcamentItem.repository.js"
 import { evaluate } from "mathjs"
 import product from "../entities/products.entity.js"
 import * as productRepository from "../repositories/products.repository.js"
-import orcamentItem from "../entities/orcamentItem.entity.js"
+// import orcamentItem from "../entities/orcamentItem.entity.js"
 
-export interface OrcamentData {
+export interface OrcamentItem {
   productId: number,
   width: number,
   height: number,
   quantity: number,
   totalPrice: number
 }
+export interface OrcamentData {
+ clientId: number,
+ items: OrcamentItem[]
+}
 
-export async function createOrcament(data: OrcamentData[]) {
+export async function createOrcament(data: OrcamentData) {
   let totalPrice = 0
   const items : orcamentRepository.CreateOrcamentItemInput[] = []
-  for (const orcamentProduct of data) {
+  for (const orcamentProduct of data.items) {
     const product = await productRepository.findById(orcamentProduct.productId)
     if (!product){
       continue
@@ -48,7 +51,8 @@ export async function createOrcament(data: OrcamentData[]) {
   const productOrcament = await orcamentRepository.create({
       totalPrice: totalPrice,
       validadeDays: 30,
-      orcamentProduct: items
+      orcamentProduct: items,
+      clientId: data.clientId
   })
   // const order = await PrismaClient.orcament.create({data: {}})
 }

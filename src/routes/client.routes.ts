@@ -2,11 +2,11 @@ import { Router } from "express"
 import * as clientController from "../controllers/client.controller.js"
 
 const router = Router()
-router.post("/clients", clientController.createClient)
-router.get("/clients", clientController.getAllClients)
-router.get("/clients/:id", clientController.getClientById)
+router.post("/client", clientController.createClient)
+router.get("/client", clientController.getAllClients)
+router.get("/client/:id", clientController.getClientById)
+router.put("/client/:id", clientController.updateClient)
+router.delete("/client/:id", clientController.deleteClient)
 
 export default router
 
-router.put("/clients/:id", clientController.updateClient)
-router.delete("/clients/:id", clientController.deleteClient)

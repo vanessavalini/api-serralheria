@@ -1,11 +1,16 @@
 import Product from "../entities/products.entity.js"
 
-export async function create(data: { name: string; color: string, description?: string }) {
-  return Product.create({ data })
+export async function create(data: { name: string; color: string, description?: string, materialProducts?: {productId: number, materialId: number, formula: string}[] }) {
+  return Product.create({ data: {
+    materialProducts: {createMany: {data: data.materialProducts || []}},
+    name: data.name,
+    color: data.color,
+    description: data.description ??  ""
+  } })
 }
 
 export async function findAll() {
-  return Product.findMany({include: {materialProducts: true }})
+  return Product.findMany({include: {materialProducts: {include: {material: true} }}})
 }
 
 export async function findById(id: number) {

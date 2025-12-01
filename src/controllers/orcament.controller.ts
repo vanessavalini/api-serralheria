@@ -55,6 +55,8 @@ export async function createOrcament(req: express.Request, res: express.Response
   doc.moveDown()
 
   doc.fontSize(12).text(`ID: ${Orcament.id || "-"}`)
+  const createdDate = Orcament.createdAt ? new Date(Orcament.createdAt).toLocaleDateString('pt-BR') : "-"
+  doc.text(`Data: ${createdDate}`)
   doc.text(`Preço total: R$ ${Number(Orcament.totalPrice).toLocaleString('pt-BR', {minimumFractionDigits: 2})}`)
   doc.text(`Validade (dias): ${Orcament.validadeDays}`)
   doc.moveDown()

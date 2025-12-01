@@ -5,6 +5,7 @@ import materialRoutes from "./routes/material.routes.js"
 import clientRoutes from "./routes/client.routes.js"
 // import orcamentItemRoutes from "./routes/orcamentItem.routes.js"
 import orcamentRoutes from "./routes/orcament.routes.js"
+import userRoutes from "./routes/user.routes.js"
 
 const app = express()
 app.use(express.json())
@@ -13,6 +14,7 @@ app.use(materialRoutes)
 app.use(clientRoutes)
 // app.use(orcamentItemRoutes)
 app.use(orcamentRoutes)
+app.use(userRoutes)
 
 const PORT = process.env.PORT || 3000
 app.listen(PORT, () => {

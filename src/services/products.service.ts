@@ -1,6 +1,6 @@
 import * as productRepository from "../repositories/products.repository.js"
 
-export async function createProduct(data: { name: string; color: string, description?: string }) {
+export async function createProduct(data: { name: string; color: string, description?: string, materialProducts?: {productId: number, materialId: number, formula: string}[] }) {
   return await productRepository.create(data)
 }
 
@@ -11,7 +11,7 @@ export async function getAllProducts() {
 export async function getProductById(id: number) {
   return await productRepository.findById(id)
 }
-export async function updateProduct(id: number, data: { name?: string; color?: string, description?: string }) {
+export async function updateProduct(id: number, data: { name?: string; color?: string, description?: string, materialProducts?: {productId: number, materialId: number, formula: string}[] }) {
   const product = await productRepository.findById(id)
   if (!product) {
     return null

@@ -1,8 +1,6 @@
 {
   // Visit https://aka.ms/tsconfig to read more about this file
   "compilerOptions": {
-    "experimentalDecorators": true,
-    "emitDecoratorMetadata": true,
     // File Layout
     "rootDir": "./src",
     "outDir": "./dist",
@@ -12,6 +10,8 @@
     "moduleResolution": "node",
     "target": "ES2023",
     "esModuleInterop": true,
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
     "ignoreDeprecations": "",
     "types": [],
     // For nodejs:
@@ -40,5 +40,12 @@
     "noUncheckedSideEffectImports": true,
     "moduleDetection": "force",
     "skipLibCheck": true,
-  }
+  },
+  "include": ["src/**/*"],
+  "exclude": [
+    "generated",
+    "prisma.config.ts",
+    "node_modules",
+    "dist"
+  ]
 }

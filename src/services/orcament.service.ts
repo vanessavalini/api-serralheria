@@ -65,13 +65,13 @@ export async function getAllOrcament() {
 export async function getOrcamentById(id: number) {
   return await orcamentRepository.findById(id)
 }
-export async function updateOrcament(id: number, data: OrcamentItem) {
-  const Orcament = await orcamentRepository.findById(id)
-  if (!Orcament) {
-    return null
-  }
-  return await orcamentRepository.update(id, data)
-}
+// export async function updateOrcament(id: number, data: OrcamentItem) {
+//   const Orcament = await orcamentRepository.findById(id)
+//   if (!Orcament) {
+//     return null
+//   }
+//   return await orcamentRepository.update(id, data)
+// }
 
 export async function deleteOrcament(id: number) {
   const Orcament = await orcamentRepository.findById(id)
